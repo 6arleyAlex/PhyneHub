@@ -1,0 +1,84 @@
+print ("YOU JUST EXECUTED PHYNEX MM2!")
+
+--https://docs.sirius.menu/rayfield
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Phynex MM2🔥",
+   Icon = 0, -- Use 0 for no icon
+   LoadingTitle = "Phynex MM2🔥",
+   LoadingSubtitle = "by .3XZLS.",
+   ShowText = "PHYNEX HUB", -- for mobile users to unhide rayfield, change if you'd like
+   Theme = "Serenity",
+
+   ToggleUIKeybind = "K",
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false,
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil,
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false,
+      Invite = "noinvitelink",
+      RememberJoins = true
+   },
+
+   KeySystem = true,
+   KeySettings = {
+      Title = "Authentication System",
+      Subtitle = "Authentication Is Required To Use",
+      Note = "Type Phynex To Continue",
+      FileName = "Key",
+      SaveKey = false,
+      GrabKeyFromSite = false,
+      Key = {"phynex"}
+   }
+})
+
+local Tab = Window:CreateTab("AutoFarm Coins", 4483362458) -- Title, Image
+
+Rayfield:Notify({
+   Title = "Notification",
+   Content = "Welcome To Phynex MM2",
+   Duration = 6.5,
+   Image = "home",
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Coin AutoFarm (MAY NEED TO WAIT A ROUND)",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+      print(Value)print("AutoFarm Starting....")loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/MM2%20AUTOFARM%20ON%20ALL%20EVENT%20COINS.txt"))()
+      
+      local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local lp = Players.LocalPlayer
+local char = lp.Character or lp.CharacterAdded:Wait()
+
+local function enableNoclip(character)
+    RunService.Stepped:Connect(function()
+        if character and character:FindFirstChild("Humanoid") then
+            for _, v in ipairs(character:GetDescendants()) do
+                if v:IsA("BasePart") then
+                    v.CanCollide = false
+                end
+            end
+        end
+    end)
+end
+
+enableNoclip(char)
+
+lp.CharacterAdded:Connect(function(newChar)
+    char = newChar
+    enableNoclip(newChar)
+end)
+   end,
+})
