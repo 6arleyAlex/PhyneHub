@@ -7,7 +7,7 @@ local Window = Rayfield:CreateWindow({
    LoadingTitle = "Phynex Script Hub",
    LoadingSubtitle = "by 3xzl",
    ShowText = "Phynex", -- for mobile users to unhide rayfield, change if you'd like
-   Theme = "Default",
+   Theme = "Serenity",
 
    ToggleUIKeybind = "K",
 
@@ -77,7 +77,7 @@ local Button = Tab:CreateButton({
    end,
 })
 
-local Tab = Window:CreateTab("Movement", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Universal", 4483362458) -- Title, Image
 
 local Button = Tab:CreateButton({
    Name = "Infinite Yield ",
