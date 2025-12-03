@@ -1,0 +1,105 @@
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local LocalPlayer = Players.LocalPlayer
+
+local AutoFarm = {
+    Tween = nil,
+    CurrentCoin = nil,
+    Farming = false,
+    RoundActive = false
+}
+
+local function getClosestCoin()
+    local char = LocalPlayer.Character
+    if not char or not char:FindFirstChild("HumanoidRootPart") then return end
+    local root = char.HumanoidRootPart
+
+    local closest, dist = nil, math.huge
+
+    for _, coinVisual in ipairs(CollectionService:GetTagged("CoinVisual")) do
+        local parent = coinVisual.Parent
+        if parent and parent:IsA("BasePart") and coinVisual:GetAttribute("Collected") ~= true then
+            local d = (root.Position - parent.Position).Magnitude
+            if d < dist then
+                dist = d
+                closest = parent
+            end
+        end
+    end
+
+    return closest
+end
+
+local function startTweenToCoin(coin)
+    if not coin then return end
+    local char = LocalPlayer.Character
+    if not char or not char:FindFirstChild("HumanoidRootPart") then return end
+    local root = char.HumanoidRootPart
+
+    if AutoFarm.Tween then
+        AutoFarm.Tween:Cancel()
+        AutoFarm.Tween = nil
+    end
+
+    AutoFarm.CurrentCoin = coin
+    local dist = (root.Position - coin.Position).Magnitude
+    local t = dist / 24
+
+    local targetCFrame = CFrame.new(coin.Position.X, coin.Position.Y + 1.5, coin.Position.Z)
+    local tween = TweenService:Create(
+        root,
+        TweenInfo.new(t, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut),
+        {CFrame = root.CFrame:Lerp(targetCFrame, 1)}
+    )
+
+    AutoFarm.Tween = tween
+
+    tween.Completed:Once(function()
+        AutoFarm.Tween = nil
+        AutoFarm.CurrentCoin = nil
+    end)
+
+    tween:Play()
+end
+
+local GamePlay = ReplicatedStorage:FindFirstChild("Remotes") and ReplicatedStorage.Remotes:FindFirstChild("Gameplay")
+if GamePlay then
+    local CoinsStarted = GamePlay:FindFirstChild("CoinsStarted")
+    if CoinsStarted then
+        CoinsStarted.OnClientEvent:Connect(function()
+            AutoFarm.RoundActive = true
+            AutoFarm.Farming = true
+        end)
+    end
+
+    local RoundEndedRemote = GamePlay:FindFirstChild("RoundEnded")
+    if RoundEndedRemote then
+        RoundEndedRemote.OnClientEvent:Connect(function()
+            AutoFarm.RoundActive = false
+            AutoFarm.Farming = false
+            if AutoFarm.Tween then
+                AutoFarm.Tween:Cancel()
+                AutoFarm.Tween = nil
+            end
+        end)
+    end
+end
+
+task.spawn(function()
+    while task.wait(0.03) do
+        if not AutoFarm.Farming or not AutoFarm.RoundActive then continue end
+        local coin = getClosestCoin()
+        if not coin then
+            if AutoFarm.Tween then
+                AutoFarm.Tween:Cancel()
+                AutoFarm.Tween = nil
+            end
+        else
+            if AutoFarm.CurrentCoin ~= coin then
+                startTweenToCoin(coin)
+            end
+        end
+    end
+end)
