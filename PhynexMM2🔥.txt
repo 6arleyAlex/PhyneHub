@@ -28,7 +28,7 @@ local Window = Rayfield:CreateWindow({
       RememberJoins = true
    },
 
-   KeySystem = true,
+   KeySystem = false,
    KeySettings = {
       Title = "Authentication System",
       Subtitle = "Authentication Is Required To Use",
@@ -82,4 +82,5 @@ lp.CharacterAdded:Connect(function(newChar)
 end)
    end,
 })
+
 
