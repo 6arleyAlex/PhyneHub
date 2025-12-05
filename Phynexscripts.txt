@@ -21,8 +21,8 @@ local Window = Rayfield:CreateWindow({
    },
 
    Discord = {
-      Enabled = false,
-      Invite = "noinvitelink",
+      Enabled = true,
+      Invite = "https://discord.gg/https://discord.gg/7WJWwrBBg3",
       RememberJoins = true
    },
 
@@ -85,6 +85,7 @@ local Button = Tab:CreateButton({
       print("Infinite Yield Executed!")loadstring(game:HttpGet('https://raw.githubusercontent.com/DarkNetworks/Infinite-Yield/main/latest.lua'))()
    end,
 })
+
 
 
 
