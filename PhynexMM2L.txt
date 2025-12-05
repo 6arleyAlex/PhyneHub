@@ -1,0 +1,102 @@
+--[[https://github.com/Nebula-Softworks/Luna-Interface-Suite/blob/main/Documentation.md]]
+local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/master/source.lua", true))()
+
+local Window = Luna:CreateWindow({
+	Name = "Phynex MM2 ", -- This Is Title Of Your Window
+	Subtitle = "Mobile Reccomended", -- A Gray Subtitle next To the main title.
+	LogoID = "nill", -- The Asset ID of your logo. Set to nil if you do not have a logo for Luna to use.
+	LoadingEnabled = true, -- Whether to enable the loading animation. Set to false if you do not want the loading screen or have your own custom one.
+	LoadingTitle = "Loading Phynex MM2", -- Header for loading screen
+	LoadingSubtitle = "by 3xzl", -- Subtitle for loading screen
+
+	ConfigSettings = {
+		RootFolder = nil, -- The Root Folder Is Only If You Have A Hub With Multiple Game Scripts and u may remove it. DO NOT ADD A SLASH
+		ConfigFolder = "Big Hub" -- The Name Of The Folder Where Luna Will Store Configs For This Script. DO NOT ADD A SLASH
+	},
+
+	KeySystem = false, -- As Of Beta 6, Luna Has officially Implemented A Key System!
+	KeySettings = {
+		Title = "Luna Example Key",
+		Subtitle = "Key System",
+		Note = "Best Key System Ever! Also, Please Use A HWID Keysystem like Pelican, Luarmor etc. that provide key strings based on your HWID since putting a simple string is very easy to bypass, the key is 1234!",
+		SaveInRoot = false, -- Enabling will save the key in your RootFolder (YOU MUST HAVE ONE BEFORE ENABLING THIS OPTION)
+		SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+		Key = {"1234"},
+		SecondAction = {
+			Enabled = true,
+			Type = "Link", -- You can also put discord as an option, if your are doing that, don’t include discord.gg as Luna will auto add it as a prefix, just replace it with your identifier, example, if your are doing discord.gg/mspaint, just use mspaint.
+			Parameter = ""
+		}
+	}
+})
+
+Window:CreateHomeTab({
+	SupportedExecutors = {
+		"Synapse X",
+		"Krnl",
+		"ProtoSmasher",
+		"Fluxus",
+		"Script-Ware",
+		"EasyExploits",
+		"Electron",
+		"JJSploit",
+		"Calamari",
+		"SirHurt",
+		"Sentinel",
+		"WEAREDEVS",
+		"Comet",
+		"Cellery",
+		"Wave",
+		"CODex",
+		"Delta"
+	},
+	DiscordInvite = "https://discord.gg/7WJWwrBBg3", -- same thing here
+	Icon = 1
+})
+
+local Tab = Window:CreateTab({
+	Name = "MM2",
+	Icon = "view_in_ar",
+	ImageSource = "Material",
+	ShowTitle = true
+})
+
+Luna:Notification({
+	Title = "Welcome",
+	Icon = "home",
+	ImageSource = "Material",
+	Content = "Welcome to PhynexMM2"
+})
+
+local Button = Tab:CreateButton({
+	Name = "Coins Autofarm",
+	Description = nil,
+	Callback = function()
+		print("AutoFarm Starting...")loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/MM2%20AUTOFARM%20ON%20ALL%20EVENT%20COINS.txt"))()
+      
+      local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local lp = Players.LocalPlayer
+local char = lp.Character or lp.CharacterAdded:Wait()
+
+local function enableNoclip(character)
+    RunService.Stepped:Connect(function()
+        if character and character:FindFirstChild("Humanoid") then
+            for _, v in ipairs(character:GetDescendants()) do
+                if v:IsA("BasePart") then
+                    v.CanCollide = false
+                end
+            end
+        end
+    end)
+end
+
+enableNoclip(char)
+
+lp.CharacterAdded:Connect(function(newChar)
+    char = newChar
+    enableNoclip(newChar)
+end)
+	end
+})
