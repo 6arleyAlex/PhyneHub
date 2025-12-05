@@ -33,7 +33,7 @@ local Window = Rayfield:CreateWindow({
       Title = "Authentication System",
       Subtitle = "Authentication Is Required To Use",
       Note = "Type Phynex To Continue",
-      FileName = "Key",
+      FileName = "TEXT FIELD",
       SaveKey = false,
       GrabKeyFromSite = false,
       Key = {"phynex"}
@@ -82,3 +82,4 @@ lp.CharacterAdded:Connect(function(newChar)
 end)
    end,
 })
+
