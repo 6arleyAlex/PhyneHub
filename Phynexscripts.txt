@@ -26,7 +26,7 @@ local Window = Rayfield:CreateWindow({
       RememberJoins = true
    },
 
-   KeySystem = nill,
+   KeySystem = false,
    KeySettings = {
       Title = "Authentication System",
       Subtitle = "Welcome To Phynex Hub But First We Gotta Test You !",
@@ -85,5 +85,6 @@ local Button = Tab:CreateButton({
       print("Infinite Yield Executed!")loadstring(game:HttpGet('https://raw.githubusercontent.com/DarkNetworks/Infinite-Yield/main/latest.lua'))()
    end,
 })
+
 
 
