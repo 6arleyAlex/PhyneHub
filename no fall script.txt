@@ -1,0 +1,43 @@
+local Players = game:GetService("Players")
+
+local function enableFloat(character)
+    local humanoid = character:WaitForChild("Humanoid", 5)
+    local rootPart = character:WaitForChild("HumanoidRootPart", 5)
+    if not humanoid or not rootPart then return end
+
+    -- Remove falling down by constantly applying upward force equal to gravity
+    -- so the player stays floating when falling
+    local bodyForce = Instance.new("BodyForce")
+    bodyForce.Force = Vector3.new(0, rootPart:GetMass() * workspace.Gravity, 0)
+    bodyForce.Parent = rootPart
+
+    humanoid.FreeFalling:Connect(function(active)
+        if active then
+            -- When player enters falling, keep them floating at current height
+            -- Disable physics controls to prevent falling animation and movement down
+            humanoid.PlatformStand = true
+            -- Freeze velocity vertically
+            rootPart.Velocity = Vector3.new(rootPart.Velocity.X, 0, rootPart.Velocity.Z)
+        else
+            humanoid.PlatformStand = false
+        end
+    end)
+end
+
+local function onCharacterAdded(character)
+    enableFloat(character)
+end
+
+local function onPlayerAdded(player)
+    player.CharacterAdded:Connect(onCharacterAdded)
+    -- Handle if character exists already
+    if player.Character then
+        enableFloat(player.Character)
+    end
+end
+
+Players.PlayerAdded:Connect(onPlayerAdded)
+
+for _, player in pairs(Players:GetPlayers()) do
+    onPlayerAdded(player)
+end
