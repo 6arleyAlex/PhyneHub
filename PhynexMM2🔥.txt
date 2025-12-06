@@ -54,7 +54,7 @@ local Toggle = Tab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1",
    Callback = function(Value)
-      print(Value)print("AutoFarm Starting....")loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/MM2%20AUTOFARM%20ON%20ALL%20EVENT%20COINS.txt"))()
+      print(Value)print("AutoFarm Starting....")loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/mm2%20execute%20to%20autofarm%20coins.txt"))()
       
       local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -82,5 +82,4 @@ lp.CharacterAdded:Connect(function(newChar)
 end)
    end,
 })
-
 
