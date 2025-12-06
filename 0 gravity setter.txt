@@ -1,0 +1,25 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+
+local function setup(char)
+    local hrp = char:WaitForChild("HumanoidRootPart")
+
+    local force = Instance.new("VectorForce")
+    force.Attachment0 = Instance.new("Attachment", hrp)
+    force.Force = Vector3.new(0, workspace.Gravity * hrp.AssemblyMass, 0)
+    force.RelativeTo = Enum.ActuatorRelativeTo.World
+    force.Parent = hrp
+
+    RunService.Stepped:Connect(function()
+        for _, obj in ipairs(char:GetDescendants()) do
+            if obj:IsA("BasePart") or obj:IsA("MeshPart") or obj:IsA("UnionOperation") then
+                obj.CanCollide = false
+            end
+        end
+    end)
+end
+
+player.CharacterAdded:Connect(setup)
+if player.Character then setup(player.Character) end
