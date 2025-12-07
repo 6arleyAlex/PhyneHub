@@ -82,3 +82,12 @@ local Tab = Window:CreateTab({
 	ImageSource = "Material",
 	ShowTitle = true
 })
+
+local Toggle = Tab:CreateToggle({
+	Name = "Toggle Example",
+	Description = nil,
+	CurrentValue = false,
+	Callback = function(Value)
+		print("i think this is it:", Value)
+	end
+}, "Toggle")
