@@ -76,6 +76,11 @@ local Button = Tab:CreateButton({
 	end
 })
 
+local Label1 = Tab:CreateLabel({
+	Text = "HUGE CREDITS TO MOON (@moon_820)",
+	Style = 1
+})
+
 local Tab = Window:CreateTab({
 	Name = "MM2",
 	Icon = "view_in_ar",
