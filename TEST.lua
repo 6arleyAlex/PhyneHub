@@ -110,14 +110,4 @@ loadstring(Auth.Body)()
             print("PHYNEX SCRIPT EXECUTOR : XVC HUB has Been Executed Succesfully")loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-XVC-Hub-170-Games-Keyless-58593"))()
         end
     })
-  
-  ButtonTab:Space()
-    
-    ButtonTab:Button({
-        Title = "Eclipse Hub MM2",
-        Color = Color3.fromHex("#cf8019"),
-        Icon = "",
-        Callback = function()
-            print("Phynex Executor : Eclipse Hub Was Successfully Executed")loadstring(game:HttpGet('https://raw.githubusercontent.com/DarkNetworks/Infinite-Yield/main/latest.lua'))()
-          end  
-    })
+  end
