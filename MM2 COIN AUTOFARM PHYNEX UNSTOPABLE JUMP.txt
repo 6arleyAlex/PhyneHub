@@ -1,0 +1,76 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/MM2%20AUTOFARM%20ON%20ALL%20EVENT%20COINS.txt"))()local player = game.Players.LocalPlayer
+local RunService = game:GetService("RunService")
+
+RunService.Stepped:Connect(function()
+	local character = player.Character
+	if not character then return end
+
+	for _, part in ipairs(character:GetChildren()) do
+		if part:IsA("BasePart") then
+			part.CanCollide = false
+		end
+	end
+end)
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local player = Players.LocalPlayer
+
+local remote =
+	ReplicatedStorage
+	:WaitForChild("Remotes")
+	:WaitForChild("Gameplay")
+	:WaitForChild("CoinCollected")
+
+local function killPlayer()
+	local character = player.Character
+	if not character then return end
+
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		humanoid.Health = 0 -- THIS is a real Roblox reset
+	end
+end
+
+remote.OnClientEvent:Connect(function(a1, a2, a3, a4)
+	-- PhynexScriptBot|By 3xzl : when THIS turns to (your selected number ) → reset (because a2 is the current coin bag status of player ) 50 is the max  for events like christmas and others (usually) and 40 is usually the classic mm2 update  
+	if tonumber(a2) == 50 then
+		killPlayer()
+	end
+end)
+local Players = game:GetService("Players")
+local VirtualUser = game:GetService("VirtualUser")
+
+local player = Players.LocalPlayer
+
+player.Idled:Connect(function()
+	-- Simulate user input to prevent idle kick
+	VirtualUser:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+	task.wait(1)
+	VirtualUser:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+end)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/no%20fall%20script.txt"))()
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local JUMP_INTERVAL = 0.5 -- seconds between jumps
+
+local function startJumping(character)
+	local humanoid = character:WaitForChild("Humanoid")
+
+	task.spawn(function()
+		while humanoid.Parent do
+			-- Force jump
+			humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+			task.wait(JUMP_INTERVAL)
+		end
+	end)
+end
+
+-- Start for current character
+if player.Character then
+	startJumping(player.Character)
+end
+
+-- Restart after every reset
+player.CharacterAdded:Connect(startJumping)
