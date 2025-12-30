@@ -1,0 +1,54 @@
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/orialdev/WindUI-Forked-by-orialdev/refs/heads/main/WindUI%20Forked"))()
+
+WindUI:AddTheme(
+    {
+        Name = "Default",
+        Accent = Color3.fromHex("#6fa36f"),
+        Dialog = Color3.fromHex("#2e4636"),
+        Outline = Color3.fromHex("#4c6b52"),
+        Text = Color3.fromHex("#e8f0e6"),
+        Placeholder = Color3.fromHex("#9fb6a2"),
+        Background = Color3.fromHex("#1f2e24"),
+        Button = Color3.fromHex("#395741"),
+        Icon = Color3.fromHex("#c9d9c7")
+    }
+)
+
+local Window = WindUI:CreateWindow({
+    Title = "Phynex Hub🌿",
+    Folder = "Phynex_Hub",
+    Icon = "solar:cursor-square-bold",
+    Theme = "Default",
+    
+    OpenButton = {
+        Title = "Phynex Hub🌿",
+        Enabled = true,
+        Draggable = true,
+        Color = ColorSequence.new(
+            Color3.fromHex("#30FF6A"), 
+            Color3.fromHex("#e7ff2f")
+        )
+    },
+})
+
+local MainTab = Window:Tab({
+    Title = "Autofarm",
+    Icon = "solar:cursor-square-bold",
+})
+
+local ElementsSection = MainTab:Section({
+    Title = "Buttons",
+    TextSize = 20,
+    Opened = true
+})
+
+ElementsSection:Button({
+    Title = "SnowTokens Autofarm",
+    Desc = "Autofarms Snow Tokens",
+    Color = Color3.fromHex("#395741"),
+    Callback = function()
+        print("PHYNEX SCRIPTS : AUTOFARM STARTING")loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/MM2%20COIN%20AUTOFARM%20PHYNEX%20UNSTOPABLE%20JUMP.txt"))()
+    end
+})
+
+MainTab:Select()
