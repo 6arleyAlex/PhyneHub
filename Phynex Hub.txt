@@ -37,7 +37,7 @@ local MainTab = Window:Tab({
 })
 
 local ElementsSection = MainTab:Section({
-    Title = "Buttons",
+    Title = "Autofarm Settings ! ",
     TextSize = 20,
     Opened = true
 })
@@ -50,5 +50,6 @@ ElementsSection:Button({
         print("PHYNEX SCRIPTS : AUTOFARM STARTING")loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/MM2%20COIN%20AUTOFARM%20PHYNEX%20UNSTOPABLE%20JUMP.txt"))()
     end
 })
+
 
 MainTab:Select()
