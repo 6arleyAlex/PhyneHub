@@ -37,7 +37,7 @@ local MainTab = Window:Tab({
 })
 
 local ElementsSection = MainTab:Section({
-    Title = "Autofarm Settings ! ",
+    Title = "Autofarm ! ",
     TextSize = 20,
     Opened = true
 })
@@ -53,3 +53,4 @@ ElementsSection:Button({
 
 
 MainTab:Select()
+
