@@ -37,7 +37,7 @@ local MainTab = Window:Tab({
 })
 
 local ElementsSection = MainTab:Section({
-    Title = "Autofarm Snow Tokens! ",
+    Title = "Autofarm Snow Tokens! (EDIT TEST !) ",
     TextSize = 20,
     Opened = true
 })
@@ -53,5 +53,6 @@ ElementsSection:Button({
 
 
 MainTab:Select()
+
 
 
