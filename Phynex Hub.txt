@@ -35,6 +35,19 @@ local MainTab = Window:Tab({
     Title = "Autofarm",
     Icon = "solar:cursor-square-bold",
 })
+Window:Tag({
+    Title = "v1.0",
+    Icon = "lucide:book-open-text",
+    Color = Color3.fromHex("#b59f64"),
+    Radius = 13, -- from 0 to 13
+})
+
+Window:Tag({
+    Title = "Powerful",
+    Icon = "lucide:cpu",
+    Color = Color3.fromHex("#b59f64"),
+    Radius = 13, -- from 0 to 13
+})
 
 local ElementsSection = MainTab:Section({
     Title = "Autofarm Snow Tokens!",
@@ -47,13 +60,31 @@ ElementsSection:Button({
     Desc = "Autofarms Snow Tokens",
     Color = Color3.fromHex("#395741"),
     Callback = function()
-        print("PHYNEX SCRIPTS : AUTOFARM STARTING")loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/MM2%20COIN%20AUTOFARM%20PHYNEX%20UNSTOPABLE%20JUMP.txt"))()
+        print("PHYNEX SCRIPTS : AUTOFARM STARTING")loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/MM2%20COIN%20AUTOFARM%20PHYNEX%20UNSTOPABLE%20JUMP.txt"))()WindUI:Notify({
+    Title = "Autofarm Settings !",
+    Content = "Autofarm Is Starting (Make Sure You Executed Before The Round Started Or At Lobby If You Executed It In Round The Autofarming will start after a round !)",
+    Duration = 10, -- 3 seconds
+    Icon = "lucide:bell-ring",
+})
+    end
+})
+
+ElementsSection:Button({
+    Title = "join Us On Discord!",
+    Desc = "Join Our Community",
+    Color = Color3.fromHex("#395741"),
+    Callback = function()
+        print("Discord Invite Notification")WindUI:Notify({
+    Title = "Join us on discord! write the link in your broswer  !",
+    Content = "CURRENTLY UNAVAILABLE! !)",
+    Duration = 10, -- 3 seconds
+    Icon = "lucide:bell-off",
+})
     end
 })
 
 
 MainTab:Select()
-
 
 
 
