@@ -15,7 +15,7 @@ WindUI:AddTheme(
 )
 
 local Window = WindUI:CreateWindow({
-    Title = "Phynex Hub🌿",
+    Title = "Phynex Hub🌿 | by 3xzls",
     Folder = "Phynex_Hub",
     Icon = "solar:cursor-square-bold",
     Theme = "Default",
@@ -85,6 +85,7 @@ ElementsSection:Button({
 
 
 MainTab:Select()
+
 
 
 
