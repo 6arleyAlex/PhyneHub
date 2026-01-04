@@ -1,23 +1,21 @@
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/orialdev/WindUI-Forked-by-orialdev/refs/heads/main/WindUI%20Forked"))()
 
-WindUI:AddTheme(
-    {
-        Name = "Default",
-        Accent = Color3.fromHex("#6fa36f"),
-        Dialog = Color3.fromHex("#2e4636"),
-        Outline = Color3.fromHex("#4c6b52"),
-        Text = Color3.fromHex("#e8f0e6"),
-        Placeholder = Color3.fromHex("#9fb6a2"),
-        Background = Color3.fromHex("#1f2e24"),
-        Button = Color3.fromHex("#395741"),
-        Icon = Color3.fromHex("#c9d9c7")
-    }
-)
+WindUI:AddTheme({
+    Name = "Default",
+    Accent = Color3.fromHex("#6fa36f"),
+    Dialog = Color3.fromHex("#2e4636"),
+    Outline = Color3.fromHex("#4c6b52"),
+    Text = Color3.fromHex("#e8f0e6"),
+    Placeholder = Color3.fromHex("#9fb6a2"),
+    Background = Color3.fromHex("#1f2e24"),
+    Button = Color3.fromHex("#395741"),
+    Icon = Color3.fromHex("#c9d9c7")
+})
 
 local Window = WindUI:CreateWindow({
     Title = "Phynex Hub🌿 | by 3xzls",
     Folder = "Phynex_Hub",
-    Icon = "solar:cursor-square-bold",
+    Icon = "lucide:badge-check",
     Theme = "Default",
     
     OpenButton = {
@@ -31,22 +29,23 @@ local Window = WindUI:CreateWindow({
     },
 })
 
-local MainTab = Window:Tab({
-    Title = "Autofarm",
-    Icon = "solar:cursor-square-bold",
-})
 Window:Tag({
-    Title = "v1.5",
+    Title = "v1.7",
     Icon = "lucide:book-open-text",
     Color = Color3.fromHex("#b59f64"),
-    Radius = 13, -- from 0 to 13
+    Radius = 13,
 })
 
 Window:Tag({
     Title = "Powerful",
     Icon = "lucide:cpu",
     Color = Color3.fromHex("#b59f64"),
-    Radius = 13, -- from 0 to 13
+    Radius = 13,
+})
+
+local MainTab = Window:Tab({
+    Title = "Autofarm",
+    Icon = "geist:coins",
 })
 
 local ElementsSection = MainTab:Section({
@@ -55,39 +54,39 @@ local ElementsSection = MainTab:Section({
     Opened = true
 })
 
-ElementsSection:Button({
+ElementsSection:Toggle({
     Title = "SnowTokens Autofarm",
     Desc = "Autofarms Snow Tokens",
-    Color = Color3.fromHex("#395741"),
-    Callback = function()
-        print("PHYNEX SCRIPTS : AUTOFARM STARTING")loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/MM2%20COIN%20AUTOFARM%20PHYNEX%20UNSTOPABLE%20JUMP.txt"))()WindUI:Notify({
-    Title = "Autofarm Settings !",
-    Content = "Autofarm Is Starting (Make Sure You Executed Before The Round Started Or At Lobby If You Executed It In Round The Autofarming will start after a round !)",
-    Duration = 10, -- 3 seconds
-    Icon = "lucide:bell-ring",
-})
+    Value = false,
+    Callback = function(state)
+        if state then
+            task.spawn(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/MM2%20COIN%20AUTOFARM%20PHYNEX%20UNSTOPABLE%20JUMP.txt"))()
+            end)
+
+            WindUI:Notify({
+                Title = "Autofarm!",
+                Content = "Autofarm Is Starting! (Make sure you are in the lobby or before the round starts).",
+                Duration = 10,
+                Icon = "lucide:bell-ring",
+            })
+        end
     end
 })
 
 ElementsSection:Button({
-    Title = "join Us On Discord!",
+    Title = "Join Us On Discord!",
     Desc = "Join Our Community",
-    Color = Color3.fromHex("#395741"),
     Callback = function()
-        print("Discord Invite Notification")WindUI:Notify({
-    Title = "Join us on discord! write the link in your broswer  !",
-    Content = "CURRENTLY UNAVAILABLE! !)",
-    Duration = 10, -- 3 seconds
-    Icon = "lucide:bell-off",
-})
+        local DiscordLink = "https://discord.gg/k9EwkpsJYV"
+        setclipboard(DiscordLink)
+        WindUI:Notify({
+            Title = "Discord Link Copied!",
+            Content = "The Discord invite link has been copied to your clipboard.",
+            Duration = 5,
+            Icon = "geist:logo-discord",
+        })
     end
 })
 
-
 MainTab:Select()
-
-
-
-
-
-
