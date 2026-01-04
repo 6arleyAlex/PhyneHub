@@ -1,0 +1,165 @@
+local Toggle = Tab:Toggle({
+
+    Title = "MM2 AutoFarm",
+
+    Desc = "Toggle the entire auto farm ON/OFF",
+
+    Icon = "bird",
+
+    Value = false, -- default off
+
+    Callback = function(state)
+
+        -- Change the global variable
+
+        _G.MM2FarmEnabled = state
+
+        if state then
+
+            -- Start the scripts when toggled ON
+
+            local Players = game:GetService("Players")
+
+            local player = Players.LocalPlayer
+
+            local RunService = game:GetService("RunService")
+
+            local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+            local VirtualUser = game:GetService("VirtualUser")
+
+            -- Noclip
+
+            local noclipConn
+
+            noclipConn = RunService.Stepped:Connect(function()
+
+                if not _G.MM2FarmEnabled then
+
+                    noclipConn:Disconnect()
+
+                    return
+
+                end
+
+                local character = player.Character
+
+                if not character then return end
+
+                for _, part in ipairs(character:GetChildren()) do
+
+                    if part:IsA("BasePart") then
+
+                        part.CanCollide = false
+
+                    end
+
+                end
+
+            end)
+
+            -- Coin reset
+
+            local remote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Gameplay"):WaitForChild("CoinCollected")
+
+            local remoteConn
+
+            remoteConn = remote.OnClientEvent:Connect(function(a1, a2, a3, a4)
+
+                if not _G.MM2FarmEnabled then
+
+                    remoteConn:Disconnect()
+
+                    return
+
+                end
+
+                if tonumber(a2) == 50 then
+
+                    local character = player.Character
+
+                    if not character then return end
+
+                    local humanoid = character:FindFirstChildOfClass("Humanoid")
+
+                    if humanoid then
+
+                        humanoid.Health = 0
+
+                    end
+
+                end
+
+            end)
+
+            -- Anti idle
+
+            local idledConn
+
+            idledConn = player.Idled:Connect(function()
+
+                if not _G.MM2FarmEnabled then
+
+                    idledConn:Disconnect()
+
+                    return
+
+                end
+
+                VirtualUser:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+
+                task.wait(1)
+
+                VirtualUser:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+
+            end)
+
+            -- Load external scripts
+
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/MM2%20AUTOFARM%20ON%20ALL%20EVENT%20COINS.txt"))()
+
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/6arleyAlex/PhyneHub/refs/heads/main/no%20fall%20script.txt"))()
+
+            -- Auto jump
+
+            local JUMP_INTERVAL = 0.5
+
+            local function startJumping(character)
+
+                local humanoid = character:WaitForChild("Humanoid")
+
+                task.spawn(function()
+
+                    while humanoid.Parent and _G.MM2FarmEnabled do
+
+                        humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+
+                        task.wait(JUMP_INTERVAL)
+
+                    end
+
+                end)
+
+            end
+
+            if player.Character then
+
+                startJumping(player.Character)
+
+            end
+
+            player.CharacterAdded:Connect(function(char)
+
+                if _G.MM2FarmEnabled then
+
+                    startJumping(char)
+
+                end
+
+            end)
+
+        end
+
+    end
+
+})
