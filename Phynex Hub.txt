@@ -30,7 +30,7 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v1.7",
+    Title = "v2.0",
     Icon = "lucide:book-open-text",
     Color = Color3.fromHex("#b59f64"),
     Radius = 13,
@@ -90,3 +90,4 @@ ElementsSection:Button({
 })
 
 MainTab:Select()
+
