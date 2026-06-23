@@ -34,7 +34,7 @@ end
 
 remote.OnClientEvent:Connect(function(a1, a2, a3, a4)
 	-- PhynexScriptBot|By 3xzl : when THIS turns to (your selected number ) → reset (because a2 is the current coin bag status of player ) 50 is the max  for events like christmas and others (usually) and 40 is usually the classic mm2 update  
-	if tonumber(a2) == 50 then
+	if tonumber(a2) == 40 then
 		killPlayer()
 	end
 end)
