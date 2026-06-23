@@ -2,24 +2,24 @@ local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/oriald
 
 WindUI:AddTheme({
     Name = "Default",
-    Accent = Color3.fromHex("#6fa36f"),
-    Dialog = Color3.fromHex("#2e4636"),
-    Outline = Color3.fromHex("#4c6b52"),
-    Text = Color3.fromHex("#e8f0e6"),
-    Placeholder = Color3.fromHex("#9fb6a2"),
-    Background = Color3.fromHex("#1f2e24"),
-    Button = Color3.fromHex("#395741"),
-    Icon = Color3.fromHex("#c9d9c7")
+    Accent = Color3.fromHex("#ff8a3d"),
+    Dialog = Color3.fromHex("#2b1a14"),
+    Outline = Color3.fromHex("#6a3d2a"),
+    Text = Color3.fromHex("#fff3e9"),
+    Placeholder = Color3.fromHex("#d9b8a3"),
+    Background = Color3.fromHex("#1c120e"),
+    Button = Color3.fromHex("#c45a2e"),
+    Icon = Color3.fromHex("#ffd7c2")
 })
 
 local Window = WindUI:CreateWindow({
-    Title = "Phynex Hub🌿 | by 3xzls",
+    Title = "Inboxe.xyz | by 3xzls",
     Folder = "Phynex_Hub",
     Icon = "lucide:badge-check",
     Theme = "Default",
     
     OpenButton = {
-        Title = "Phynex Hub🌿",
+        Title = "Inboxe.xyz",
         Enabled = true,
         Draggable = true,
         Color = ColorSequence.new(
